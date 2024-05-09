@@ -63,6 +63,7 @@ def get_boxes_from_mask(mask, box_num=1, std = 0.1, max_pixel = 5):
         x0, y0 = x0 + noise_x, y0 + noise_y
         x1, y1 = x1 + noise_x, y1 + noise_y
         noise_boxes.append((x0, y0, x1, y1))
+        # print("noise_boxes:",noise_boxes)
     return torch.as_tensor(noise_boxes, dtype=torch.float)
 
 

@@ -70,10 +70,10 @@ class MaskDecoder(nn.Module):
 
     def forward(
         self,
-        image_embeddings: torch.Tensor,   #[B, 256, 64, 64]
-        image_pe: torch.Tensor,           #[1, 256, 64, 64]
-        sparse_prompt_embeddings: torch.Tensor, #[B, 3, 256]
-        dense_prompt_embeddings: torch.Tensor,  #[B, 256, 64, 64]
+        image_embeddings: torch.Tensor,   # [B, 256, 64, 64]
+        image_pe: torch.Tensor,           # [1, 256, 64, 64]
+        sparse_prompt_embeddings: torch.Tensor, # [B, 3, 256]
+        dense_prompt_embeddings: torch.Tensor,  # [B, 256, 64, 64]
         multimask_output: bool,
     ) -> Tuple[torch.Tensor, torch.Tensor]:
         """
@@ -142,9 +142,9 @@ class MaskDecoder(nn.Module):
         hyper_in_list: List[torch.Tensor] = []
         for i in range(self.num_mask_tokens):
             hyper_in_list.append(self.output_hypernetworks_mlps[i](mask_tokens_out[:, i, :]))
-        hyper_in = torch.stack(hyper_in_list, dim=1)  #[1,4,32]
+        hyper_in = torch.stack(hyper_in_list, dim=1)  # [1,4,32]
 
-        b, c, h, w = upscaled_embedding.shape  #[1, 32, 256, 256]
+        b, c, h, w = upscaled_embedding.shape  # [1, 32, 256, 256]
         masks = (hyper_in @ upscaled_embedding.view(b, c, h * w)).view(b, -1, h, w)
 
         # Generate mask quality predictions

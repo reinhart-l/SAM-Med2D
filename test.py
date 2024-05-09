@@ -36,7 +36,7 @@ def parse_args():
     parser.add_argument("--multimask", type=bool, default=True, help="ouput multimask")
     parser.add_argument("--encoder_adapter", type=bool, default=True, help="use adapter")
     parser.add_argument("--prompt_path", type=str, default=None, help="fix prompt path")
-    parser.add_argument("--save_pred", type=bool, default=False, help="save reslut")
+    parser.add_argument("--save_pred", type=bool, default=False, help="save result")
     args = parser.parse_args()
     if args.iter_point > 1:
         args.point_num = 1
